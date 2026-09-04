@@ -11,7 +11,7 @@ let humiditySol = 0;
 function sendData(){
     // Remplace par l'URL de ton serveur Render quand il sera en ligne (ex: 'https://rizora-backend.onrender.com/capteur')
     // ou '/capteur' si ton routeur sur l'ESP32 répond sur /capteur
-    fetch('http://localhost:3000/mesure')
+    fetch('https://agrisoonbakend.onrender.com/mesure')
     .then(response => {
         if (!response.ok) {
             throw new Error("Erreur réseau lors de la récupération des données");
