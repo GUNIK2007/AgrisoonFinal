@@ -40,4 +40,4 @@ function sendData(){
 }
 
 // Actualisation toutes les 3 secondes
-setInterval(sendData, 3000);
+setInterval(sendData, 2500);
