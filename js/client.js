@@ -40,10 +40,10 @@ function sendData(){
         return response.json();
     })
     .then(mesure => {
-        temperature = mesure.temperature ?? 0;
-        humidity = mesure.humidity_air ?? 0;
-        humiditySol = mesure.humidity_sol ?? 0;
-        waterLevel = mesure.niveau_eau ?? 0;
+        temperature = mesure.temperature;
+        humidity = mesure.humidity_air;
+        humiditySol = mesure.humidity_sol;
+        waterLevel = mesure.niveau_eau;
 
         // Mise à jour de l'affichage dans le HTML
         labelHUM.textContent = humidity + " %";
