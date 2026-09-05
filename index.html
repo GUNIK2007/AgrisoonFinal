@@ -604,28 +604,28 @@
         .role-badge.admin { background: #f4e0c6; color: #8a5a22; }
         .account-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
-        .agri-chatbot { margin: 18px auto 0; max-width: 1180px; display: grid; grid-template-columns: minmax(190px, .7fr) minmax(0, 1.7fr); gap: 16px; padding: 16px; background: var(--primary-dark); border-radius: var(--radius-lg); color: white; box-shadow: var(--shadow-md); }
-        .agri-chatbot-intro { padding: 4px 6px; }
+        .agri-chatbot { margin: 28px auto 0; max-width: 1180px; display: grid; grid-template-columns: minmax(230px, .8fr) minmax(0, 1.7fr); gap: 24px; padding: 24px; background: var(--primary-dark); border-radius: var(--radius-lg); color: white; box-shadow: var(--shadow-md); }
+        .agri-chatbot-intro { padding: 10px 8px; }
         .agri-chatbot-intro .badge-tag { background: rgba(82, 183, 136, .18); color: #b8efd0; margin-bottom: 14px; }
-        .agri-chatbot-intro h3 { font-size: 1.25rem; margin-bottom: 6px; }
-        .agri-chatbot-intro p { color: #d8e8dd; font-size: .82rem; }
-        .chatbot-status { display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; color: #b8efd0; font-size: .72rem; font-weight: 700; }
+        .agri-chatbot-intro h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .agri-chatbot-intro p { color: #d8e8dd; font-size: .9rem; }
+        .chatbot-status { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; color: #b8efd0; font-size: .78rem; font-weight: 700; }
         .chatbot-status::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); box-shadow: 0 0 0 4px rgba(82, 183, 136, .15); }
-        .chat-window { display: flex; min-height: 260px; flex-direction: column; overflow: hidden; background: #f8fbf8; border-radius: 14px; color: var(--text-main); }
-        .chat-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; background: white; border-bottom: 1px solid var(--border-color); }
+        .chat-window { display: flex; min-height: 420px; flex-direction: column; overflow: hidden; background: #f8fbf8; border-radius: 14px; color: var(--text-main); }
+        .chat-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; background: white; border-bottom: 1px solid var(--border-color); }
         .chat-header strong { color: var(--primary-dark); }
         .chat-header span { color: var(--text-muted); font-size: .75rem; }
-        .chat-messages { display: flex; flex: 1; flex-direction: column; gap: 8px; max-height: 150px; overflow-y: auto; padding: 12px 14px; }
-        .chat-message { max-width: 84%; padding: 8px 10px; border-radius: 13px; font-size: .78rem; white-space: pre-line; }
+        .chat-messages { display: flex; flex: 1; flex-direction: column; gap: 12px; max-height: 300px; overflow-y: auto; padding: 18px; }
+        .chat-message { max-width: 84%; padding: 11px 14px; border-radius: 13px; font-size: .86rem; white-space: pre-line; }
         .chat-message.bot { align-self: flex-start; background: white; border: 1px solid var(--border-color); color: var(--text-main); }
         .chat-message.user { align-self: flex-end; background: var(--primary-green); color: white; }
         .chat-message small { display: block; margin-bottom: 4px; font-size: .68rem; font-weight: 800; opacity: .7; }
-        .chat-suggestions { display: flex; gap: 8px; overflow-x: auto; padding: 0 14px 8px; }
+        .chat-suggestions { display: flex; gap: 8px; overflow-x: auto; padding: 0 18px 12px; }
         .chat-suggestion { flex: 0 0 auto; padding: 7px 10px; border: 1px solid #cfe2d3; border-radius: 15px; background: white; color: var(--primary-green); cursor: pointer; font: inherit; font-size: .74rem; }
-        .chat-form { display: flex; gap: 8px; padding: 8px 14px 10px; background: white; border-top: 1px solid var(--border-color); }
+        .chat-form { display: flex; gap: 8px; padding: 12px 18px 16px; background: white; border-top: 1px solid var(--border-color); }
         .chat-form input { min-width: 0; flex: 1; padding: 11px 13px; border: 1px solid var(--border-color); border-radius: 9px; font: inherit; }
         .chat-form .btn { padding: 10px 14px; border-radius: 9px; }
-        .chat-disclaimer { padding: 0 14px 8px; background: white; color: var(--text-muted); font-size: .62rem; }
+        .chat-disclaimer { padding: 0 18px 12px; background: white; color: var(--text-muted); font-size: .68rem; }
 
         .modal-backdrop { position: fixed; inset: 0; z-index: 2000; display: none; place-items: center; padding: 20px; background: rgba(27, 61, 47, 0.55); }
         .modal-backdrop.open { display: grid; }
@@ -713,7 +713,7 @@
             <li><a href="#accueil" class="active">Accueil</a></li>
             <li><a href="#plateforme">À Propos</a></li>
             <li><a href="#cultures">Solutions Multi-Cultures</a></li>
-            <li><a href="#parcelles">Mes parcelles</a></li>
+            <li><a href="#parcelles">AgriConseil IA</a></li>
             <li><a href="#alertes">Alertes</a></li>
             <li><a href="#marketplace">Marketplace</a></li>
         </ul>
@@ -747,7 +747,7 @@
                 <i class="fa-solid fa-droplet" style="color: #2d6a4f; font-size: 1.5rem;"></i>
                 <div>
                     <p style="font-size: 0.75rem; color: var(--text-muted);">Humidité du Sol</p>
-                    <p style="font-weight: 700; color: var(--primary-dark);" id="val-recom2">Optimale (0 %)</p>
+                    <p style="font-weight: 700; color: var(--primary-dark);">Optimale (65%)</p>
                 </div>
             </div>
 
@@ -859,15 +859,15 @@
                     </div>
                     <div class="metric-card">
                         <h4>Température Air</h4>
-                        <div class="value" id="val-temp">0 °C</div>
+                        <div class="value" id="val-temp">0°C</div>
                     </div>
                     <div class="metric-card">
                         <h4>Niveau d'Eau</h4>
                         <div class="value" id="val-water">0</div>
                     </div>
                     <div class="metric-card">
-                        <h4>Humidité du sol</h4>
-                        <div class="value" id="val-recom" style="font-size: 0.9rem; color: var(--primary-green); font-weight: 600;">0 </div>
+                        <h4>humidité du sol</h4>
+                        <div class="value" id="val-recom" style="font-size: 0.9rem; color: var(--primary-green); font-weight: 600;">0</div>
                     </div>
                 </div>
             </div>
@@ -904,7 +904,7 @@
             <div class="account-actions"><button class="btn btn-secondary" id="sync-button">Synchroniser</button><button class="btn btn-secondary" id="admin-action" hidden>Administration</button><button class="btn btn-secondary" id="account-action">Se connecter</button></div>
         </div>
         <div class="platform-grid">
-            <article class="platform-card platform-card-full" id="agriculteur-profile">
+            <article class="platform-card platform-card-full">
                 <div class="card-heading"><h3>Espace vendeur</h3><span class="status-dot" id="seller-status">Connexion requise</span></div>
                 <form class="platform-form" id="product-form">
                     <label>Nom du produit<input name="name" required placeholder="Ex. Riz étuvé premium"></label>
@@ -1182,6 +1182,7 @@
         syncParcels();
         setInterval(() => { if (!API_BASE) { parcels = parcels.map(parcel => ({ ...parcel, humidity: Math.max(25, Math.min(80, parcel.humidity + Math.round((Math.random() - 0.5) * 4))) })); write('agrisoOnParcels', parcels); renderPlatform(); } }, 8000);
     </script>
+    <script src="./js/client.js"></script>
     <script>
         const phoneField = document.getElementById('phone-field');
         const baseUpdateAuthMode = updateAuthMode;
@@ -1190,14 +1191,27 @@
         loginForm.addEventListener('submit', () => { const submittedPhone = (new FormData(loginForm).get('phone') || '').trim(); if (!submittedPhone) return; setTimeout(() => { const session = read('agrisoOnUser', null); if (!session) return; users = users.map(user => user.id === session.id ? { ...user, phone: submittedPhone } : user); write('agrisoOnUsers', users); write('agrisoOnUser', { ...session, phone: submittedPhone }); renderPlatform(); }, 0); }, true);
         const baseRenderPlatform = renderPlatform;
         renderPlatform = () => { baseRenderPlatform(); const session = read('agrisoOnUser', null); const phoneInput = document.getElementById('product-phone'); if (phoneInput && session?.role === 'agriculteur') phoneInput.value = session.phone || ''; };
-        document.getElementById('product-form').onsubmit = async event => { event.preventDefault(); const user = read('agrisoOnUser', null); const message = document.getElementById('product-message'); if (!user || user.role !== 'agriculteur') { message.textContent = 'Connectez-vous comme agriculteur pour publier un produit.'; return; } const data = new FormData(event.currentTarget); const phone = (data.get('phone') || '').trim(); const imageFile = data.get('image'); if (!phone) { message.textContent = 'Ajoutez un numéro de téléphone avant de publier ce produit.'; return; } if (!imageFile || !imageFile.type.startsWith('image/')) { message.textContent = 'Sélectionnez une image valide.'; return; } const image = await new Promise(resolve => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.readAsDataURL(imageFile); }); const product = { id: Date.now(), ownerId: user.id, name: data.get('name').trim(), category: data.get('category'), quantity: Number(data.get('quantity')), price: Number(data.get('price')), seller: user.name, sellerPhone: phone, image }; try { const savedProduct = await apiRequest('/api/products', { method: 'POST', body: JSON.stringify(product) }); products.push(savedProduct || product); } catch (error) { products.push(product); } write('agrisoOnProducts', products); event.currentTarget.reset(); message.textContent = 'Produit publié avec son image et son numéro de téléphone.'; renderPlatform(); };
-        document.getElementById('checkout-button').onclick = async () => { const user = read('agrisoOnUser', null); const message = document.getElementById('checkout-message'); if (!user || user.role !== 'acheteur') { message.textContent = 'Connectez-vous comme acheteur pour valider votre commande.'; openLogin(); return; } if (!cart.length) { message.textContent = 'Ajoutez au moins un produit à votre panier.'; return; } const order = { id: Date.now(), buyerId: user.id, buyerPhone: user.phone || '', products: cart, total: cart.reduce((sum, product) => sum + product.price, 0), createdAt: new Date().toISOString() }; orders.push(order); cart.forEach(product => notifications.push({ id: Date.now() + Math.random(), sellerId: product.ownerId, orderId: order.id, message: 'Votre produit a été commandé.', read: false })); write('agrisoOnOrders', orders); write('agrisoOnNotifications', notifications); try { await apiRequest('/api/orders', { method: 'POST', body: JSON.stringify(order) }); } catch (error) { } cart = []; write('agrisoOnCart', cart); renderCart(); renderPlatform(); message.textContent = 'Commande enregistrée. Le vendeur a été informé.'; };
+        document.getElementById('product-form').onsubmit = async event => {
+            event.preventDefault(); const user = read('agrisoOnUser', null); const message = document.getElementById('product-message');
+            if (!user || user.role !== 'agriculteur') { message.textContent = 'Connectez-vous comme agriculteur pour publier un produit.'; return; }
+            const data = new FormData(event.currentTarget); const phone = (data.get('phone') || '').trim(); const imageFile = data.get('image');
+            if (!phone) { message.textContent = 'Ajoutez un numéro de téléphone avant de publier ce produit.'; return; }
+            if (!imageFile || !imageFile.type.startsWith('image/')) { message.textContent = 'Sélectionnez une image valide.'; return; }
+            const image = await new Promise(resolve => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.readAsDataURL(imageFile); });
+            const product = { id: Date.now(), ownerId: user.id, name: data.get('name').trim(), category: data.get('category'), quantity: Number(data.get('quantity')), price: Number(data.get('price')), seller: user.name, sellerPhone: phone, image };
+            try { const savedProduct = await apiRequest('/api/products', { method: 'POST', body: JSON.stringify(product) }); products.push(savedProduct || product); } catch (error) { products.push(product); }
+            write('agrisoOnProducts', products); event.currentTarget.reset(); message.textContent = 'Produit publié avec son image et son numéro de téléphone.'; renderPlatform();
+        };
+        document.getElementById('checkout-button').onclick = async () => {
+            const user = read('agrisoOnUser', null); const message = document.getElementById('checkout-message');
+            if (!user || user.role !== 'acheteur') { message.textContent = 'Connectez-vous comme acheteur pour valider votre commande.'; openLogin(); return; }
+            if (!cart.length) { message.textContent = 'Ajoutez au moins un produit à votre panier.'; return; }
+            const order = { id: Date.now(), buyerId: user.id, buyerPhone: user.phone || '', products: cart, total: cart.reduce((sum, product) => sum + product.price, 0), createdAt: new Date().toISOString() };
+            orders.push(order); cart.forEach(product => notifications.push({ id: Date.now() + Math.random(), sellerId: product.ownerId, orderId: order.id, message: 'Votre produit a été commandé.', read: false }));
+            write('agrisoOnOrders', orders); write('agrisoOnNotifications', notifications); try { await apiRequest('/api/orders', { method: 'POST', body: JSON.stringify(order) }); } catch (error) { }
+            cart = []; write('agrisoOnCart', cart); renderCart(); renderPlatform(); message.textContent = 'Commande enregistrée. Le vendeur a été informé.';
+        };
         updateAuthMode();
-        loginForm.addEventListener('submit', () => setTimeout(() => {
-            const session = read('agrisoOnUser', null);
-            if (session?.role === 'agriculteur') document.getElementById('agriculteur-profile').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50), true);
     </script>
-    <script src=".js/client.js"> </script>
 </body>
 </html>
