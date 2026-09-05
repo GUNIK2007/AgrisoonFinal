@@ -2,6 +2,7 @@ let labelTEMP = document.querySelector("#val-temp");
 let labelHUM = document.querySelector("#val-humidity");
 let labelwater = document.querySelector("#val-water");
 let labelSol = document.querySelector("#val-recom") ;
+let labelSolindex = document.querySelector("#val-recom2") ;
 
 let temperature = 0; 
 let humidity = 0; 
@@ -31,6 +32,7 @@ function sendData(){
         labelTEMP.textContent = temperature + " °C";
         labelwater.textContent = waterLevel;
         labelSol.textContent = humiditySol;
+        labelSolindex.textContent = `Optimal ( ${humiditySol} )`;
 
         console.reg?.("Données mises à jour avec succès !");
     })
