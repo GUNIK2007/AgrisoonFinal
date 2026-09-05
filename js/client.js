@@ -8,9 +8,6 @@ let temperature = 0;
 let humidity = 0; 
 let waterLevel = 0; 
 let humiditySol = 0; 
-labelSolindex.addEventListener('click' , function(){
-    alert("salut) ;
-})
 function sendData(){
     // Remplace par l'URL de ton serveur Render quand il sera en ligne (ex: 'https://rizora-backend.onrender.com/capteur')
     // ou '/capteur' si ton routeur sur l'ESP32 répond sur /capteur
