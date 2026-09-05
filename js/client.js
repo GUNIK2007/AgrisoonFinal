@@ -31,7 +31,7 @@ function sendData(){
         labelTEMP.textContent = temperature + " °C";
         labelwater.textContent = waterLevel;
         labelSol.textContent = humiditySol;
-        labelSolindex.textContent = `Optimal ( ${humiditySol} )`;
+        labelSolindex.textContent = `Optimal ( ${humiditySol}%)`;
 
         console.reg?.("Données mises à jour avec succès !");
     })
