@@ -1,16 +1,15 @@
 let labelTEMP = document.querySelector("#val-temp");
 let labelHUM = document.querySelector("#val-humidity");
 let labelwater = document.querySelector("#val-water");
-let labelSol = document.querySelector("#val-recom") ;
-let labelSolindex = document.querySelector("#val-recom2") ;
+let labelSol = document.querySelector("#val-recom");
+let labelSolindex = document.querySelector("#val-recom2");
 
 let temperature = 0; 
 let humidity = 0; 
 let waterLevel = 0; 
 let humiditySol = 0; 
+
 function sendData(){
-    // Remplace par l'URL de ton serveur Render quand il sera en ligne (ex: 'https://rizora-backend.onrender.com/capteur')
-    // ou '/capteur' si ton routeur sur l'ESP32 répond sur /capteur
     fetch('https://agrisoonbakend.onrender.com/mesure')
     .then(response => {
         if (!response.ok) {
@@ -19,26 +18,25 @@ function sendData(){
         return response.json();
     })
     .then(mesure => {
-        // Correspondance exacte avec les clés JSON envoyées par l'ESP32 ou le serveur
-        temperature = mesure.temperature;
-        humidity = mesure.humidity_air;
-        humiditySol = mesure.humidity_sol;
-        waterLevel = mesure.niveau_eau;
-    
+        // Récupération des valeurs avec une valeur par défaut (0) si elles n'existent pas encore
+        temperature = mesure.temperature ?? 0;
+        humidity = mesure.humidity_air ?? 0;
+        humiditySol = mesure.humidity_sol ?? 0;
+        waterLevel = mesure.niveau_eau ?? 0;
 
-        // Mise à jour de l'affichage dans le HTML
+        // Mise à jour de l'affichage dans le HTML avec les symboles
         labelHUM.textContent = humidity + " %";
         labelTEMP.textContent = temperature + " °C";
         labelwater.textContent = waterLevel;
-        labelSol.textContent = humiditySol;
-        labelSolindex.textContent = `Optimal ( ${humiditySol}%)`;
+        labelSol.textContent = humiditySol + " %";
+        labelSolindex.textContent = `Optimal ( ${humiditySol} % )`;
 
-        console.reg?.("Données mises à jour avec succès !");
+        console.log("Données mises à jour avec succès !");
     })
     .catch(error => {
         console.error("Erreur :", error);
     });
 }
 
-// Actualisation toutes les 3 secondes
+// Actualisation toutes les 2.5 secondes (2500 ms)
 setInterval(sendData, 2500);
