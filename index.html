@@ -6,6 +6,1195 @@ let labelSolindex = document.querySelector("#val-recom2");
 
 let temperature = 0; 
 let humidity = 0; 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGRISOON - Écosystème Agricole Intelligent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #1b3d2f;
+            --primary-green: #2d6a4f;
+            --accent-green: #52b788;
+            --light-green: #e8f5e9;
+            --gold-accent: #d4a373;
+            --bg-light: #f8f9fa;
+            --surface-white: #ffffff;
+            --text-main: #212529;
+            --text-muted: #6c757d;
+            --border-color: #e9ecef;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- EN-TÊTE / NAVBAR --- */
+        .navbar {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 14px 6%;
+            background: var(--surface-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            flex: 0 0 auto;
+        }
+
+        .logo i {
+            color: var(--accent-green);
+        }
+
+        .logo-icon {
+            position: relative;
+            width: clamp(36px, 3.2vw, 46px);
+            height: clamp(36px, 3.2vw, 46px);
+            flex: 0 0 clamp(36px, 3.2vw, 46px);
+            overflow: hidden;
+            display: block;
+            aspect-ratio: 1;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .logo-icon img {
+            position: absolute;
+            width: 210px;
+            height: auto;
+            max-width: none;
+            left: 50%;
+            top: -26px;
+            transform: translateX(-50%);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(12px, 1.8vw, 26px);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--text-main);
+            transition: color 0.3s ease;
+            white-space: nowrap;
+            font-size: clamp(0.78rem, 1vw, 0.95rem);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-green);
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 0;
+            background: transparent;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .navbar-actions .btn {
+            flex: 0 0 auto;
+            padding: 10px 15px;
+            font-size: 0.82rem;
+            white-space: nowrap;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 0 0 auto;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--surface-white);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-green);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 60px 8% 80px 8%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .badge-tag {
+            background-color: var(--light-green);
+            color: var(--primary-green);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary-green);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero-image-container {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Float Cards On Image */
+        .glass-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-soil {
+            bottom: 30px;
+            left: 20px;
+        }
+
+        .card-score {
+            bottom: 30px;
+            right: 20px;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .card-score .percentage {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary-green);
+        }
+
+        .card-score .label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        /* --- SOLUTIONS SECTION --- */
+        .solutions {
+            padding: 80px 8%;
+            text-align: center;
+            background: var(--surface-white);
+        }
+
+        .section-header p {
+            color: var(--primary-green);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-top: 5px;
+            margin-bottom: 40px;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+
+        .solution-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: var(--radius-md);
+            text-align: left;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .solution-card:hover {
+            background: var(--surface-white);
+            border-color: var(--accent-green);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+        }
+
+        .icon-wrapper {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-green);
+            color: var(--primary-green);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-card h3 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .solution-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- STATS BANNER --- */
+        .stats-banner {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 50px 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        #val-recom{
+            font-size:100px ;
+            color:red ;
+        }
+
+        .stat-item i {
+            font-size: 1.5rem;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            color: #a3b18a;
+        }
+
+        /* --- DASHBOARD PREVIEW --- */
+        .dashboard-section {
+            padding: 80px 8%;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .dashboard-container > *, .platform-grid > *, .marketplace-grid > * {
+            min-width: 0;
+        }
+
+        .dashboard-info h2 {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+        }
+
+        .features-list i {
+            color: var(--accent-green);
+            background: var(--light-green);
+            padding: 6px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+        }
+
+        /* Interactive UI Mockup */
+        .ui-mockup {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .mockup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .crop-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .crop-btn {
+            padding: 6px 14px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .crop-btn.active {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .metric-card {
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: var(--radius-md);
+        }
+
+        .metric-card h4 {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .metric-card .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-top: 5px;
+        }
+
+        /* --- FOOTER BANNER --- */
+        .cta-banner {
+            background: var(--light-green);
+            padding: 40px 8%;
+            margin: 40px 8%;
+            border-radius: var(--radius-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .platform-section {
+            padding: 70px 8%;
+            background: #f1f7f2;
+        }
+
+        .platform-heading {
+            max-width: 760px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+
+        .platform-heading h2 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .platform-heading p {
+            color: var(--text-muted);
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1180px;
+            margin: auto;
+        }
+
+        .platform-card {
+            background: var(--surface-white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .platform-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+        }
+
+        .platform-card-wide {
+            grid-column: span 2;
+        }
+
+        .platform-card-full {
+            grid-column: 1 / -1;
+        }
+
+        .marketplace-section { padding: 70px 8%; background: #fffaf4; }
+        .marketplace-grid { display: flex; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 30px; max-width: 1280px; margin: auto; align-items: center;justify-content: center; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .product-card { padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--surface-white); box-shadow: var(--shadow-sm); }
+        .product-image { width: 100%; height: 150px; object-fit: cover; border-radius: 9px; margin-bottom: 12px; background: #edf3ed; }
+        .product-card h4 { color: var(--primary-dark); margin: 0 0 7px; }
+        .product-price { color: var(--primary-green); font-weight: 800; font-size: 1.1rem; }
+        .product-meta { display: flex; justify-content: space-between; gap: 8px; color: var(--text-muted); font-size: .82rem; margin: 8px 0 14px; }
+        .market-toolbar { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+        .market-toolbar input, .market-toolbar select { flex: 1; min-width: 150px; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; font: inherit; }
+        .cart-row { padding: 10px 0; border-bottom: 1px solid var(--border-color); }
+        .cart-total { display: flex; justify-content: space-between; margin: 16px 0; color: var(--primary-dark); font-weight: 800; }
+        .order-card { padding: 14px; border: 1px solid var(--border-color); border-radius: 10px; background: #f8fbf8; }
+        .order-card + .order-card { margin-top: 10px; }
+        .order-status { color: var(--primary-green); font-size: .82rem; font-weight: 700; }
+        .seller-products { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border-color); width: 25%; height: auto;}
+        .seller-product-row { padding: 11px 0; border-bottom: 1px solid var(--border-color); }
+        .seller-product-row .product-image { display: block; max-width: 100%; }
+        .seller-product-actions { display: flex; justify-content: flex-end; margin-top: 10px; }
+        .notification-count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 99px; background: #d9822b; color: #fff; font-size: .72rem; }
+        @media (max-width: 1100px) { .marketplace-section { padding-left: 5%; padding-right: 5%; } .marketplace-grid { grid-template-columns: 1fr 1.4fr; } }
+        @media (max-width: 900px) { .marketplace-grid { grid-template-columns: 1fr; max-width: 720px; } .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 650px) { .marketplace-section { padding: 45px 5%; } .product-grid { grid-template-columns: 1fr; } .product-card { padding: 14px; } .product-meta { flex-direction: column; } }
+
+        .account-bar, .card-heading, .parcel-line, .alert-line {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .account-bar {
+            max-width: 1180px;
+            margin: 0 auto 22px;
+            padding: 12px 16px;
+            background: var(--surface-white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .account-name { color: var(--primary-dark); font-weight: 700; }
+        .account-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+        .muted { color: var(--text-muted); font-size: 0.9rem; }
+        .status-dot { color: #27804f; font-weight: 700; font-size: 0.85rem; }
+
+        .data-list { display: grid; gap: 10px; }
+        .parcel-line, .alert-line { padding: 12px; background: #f8fbf8; border-radius: 9px; }
+        .parcel-line strong { color: var(--primary-dark); }
+        .parcel-values { display: flex; gap: 12px; color: var(--text-muted); font-size: 0.82rem; }
+        .alert-line { border-left: 4px solid var(--gold-accent); align-items: flex-start; }
+        .alert-line.warning { border: 1px solid #fd4b05; }
+        .alert-line.good { border: 1px solid var(--accent-green); }
+        .alert-icon { color: #c77a25; }
+        .empty-state { color: var(--text-muted); font-size: 0.9rem; padding: 8px 0; }
+
+        .platform-form { display: grid; gap: 12px; }
+        .platform-form label { display: grid; gap: 5px; color: var(--primary-dark); font-weight: 600; font-size: 0.88rem; }
+        .platform-form input, .platform-form select { width: 100%; padding: 11px 12px; border: 1px solid var(--border-color); border-radius: 8px; font: inherit; }
+        .form-message { min-height: 20px; color: var(--primary-green); font-size: 0.88rem; }
+        .admin-section { display: none; max-width: 1180px; margin: 35px auto 0; padding: 26px; background: #fff8ef; border: 1px solid #ead8bd; border-radius: var(--radius-md); }
+        .admin-section.open { display: block; }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        .admin-table th, .admin-table td { padding: 11px 8px; text-align: left; border-bottom: 1px solid #eadfce; font-size: .88rem; }
+        .admin-table th { color: var(--primary-dark); }
+        .role-badge { display: inline-block; padding: 4px 8px; border-radius: 999px; background: #e4f3e4; color: var(--primary-green); font-size: .75rem; font-weight: 700; }
+        .role-badge.admin { background: #f4e0c6; color: #8a5a22; }
+        .account-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+        .agri-chatbot { margin: 28px auto 0; max-width: 1180px; display: grid; grid-template-columns: minmax(230px, .8fr) minmax(0, 1.7fr); gap: 24px; padding: 24px; background: var(--primary-dark); border-radius: var(--radius-lg); color: white; box-shadow: var(--shadow-md); }
+        .agri-chatbot-intro { padding: 10px 8px; }
+        .agri-chatbot-intro .badge-tag { background: rgba(82, 183, 136, .18); color: #b8efd0; margin-bottom: 14px; }
+        .agri-chatbot-intro h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .agri-chatbot-intro p { color: #d8e8dd; font-size: .9rem; }
+        .chatbot-status { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; color: #b8efd0; font-size: .78rem; font-weight: 700; }
+        .chatbot-status::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); box-shadow: 0 0 0 4px rgba(82, 183, 136, .15); }
+        .chat-window { display: flex; min-height: 420px; flex-direction: column; overflow: hidden; background: #f8fbf8; border-radius: 14px; color: var(--text-main); }
+        .chat-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; background: white; border-bottom: 1px solid var(--border-color); }
+        .chat-header strong { color: var(--primary-dark); }
+        .chat-header span { color: var(--text-muted); font-size: .75rem; }
+        .chat-messages { display: flex; flex: 1; flex-direction: column; gap: 12px; max-height: 300px; overflow-y: auto; padding: 18px; }
+        .chat-message { max-width: 84%; padding: 11px 14px; border-radius: 13px; font-size: .86rem; white-space: pre-line; }
+        .chat-message.bot { align-self: flex-start; background: white; border: 1px solid var(--border-color); color: var(--text-main); }
+        .chat-message.user { align-self: flex-end; background: var(--primary-green); color: white; }
+        .chat-message small { display: block; margin-bottom: 4px; font-size: .68rem; font-weight: 800; opacity: .7; }
+        .chat-suggestions { display: flex; gap: 8px; overflow-x: auto; padding: 0 18px 12px; }
+        .chat-suggestion { flex: 0 0 auto; padding: 7px 10px; border: 1px solid #cfe2d3; border-radius: 15px; background: white; color: var(--primary-green); cursor: pointer; font: inherit; font-size: .74rem; }
+        .chat-form { display: flex; gap: 8px; padding: 12px 18px 16px; background: white; border-top: 1px solid var(--border-color); }
+        .chat-form input { min-width: 0; flex: 1; padding: 11px 13px; border: 1px solid var(--border-color); border-radius: 9px; font: inherit; }
+        .chat-form .btn { padding: 10px 14px; border-radius: 9px; }
+        .chat-disclaimer { padding: 0 18px 12px; background: white; color: var(--text-muted); font-size: .68rem; }
+
+        .modal-backdrop { position: fixed; inset: 0; z-index: 2000; display: none; place-items: center; padding: 20px; background: rgba(27, 61, 47, 0.55); }
+        .modal-backdrop.open { display: grid; }
+        .platform-modal { width: min(480px, 100%); position: relative; padding: 28px; background: var(--surface-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+        .platform-modal h2 { color: var(--primary-dark); margin: 0 0 18px; }
+        .modal-close { position: absolute; top: 12px; right: 16px; border: 0; background: transparent; color: var(--text-muted); font-size: 1.6rem; cursor: pointer; }
+        .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }
+
+        .cta-banner h3 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero, .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            .cta-banner {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle { display: block; margin-left: auto; }
+            .navbar-actions { display: none; }
+            .navbar.open .nav-links {
+                display: flex;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                align-items: stretch;
+                padding: 12px 8%;
+                background: var(--surface-white);
+                flex-direction: column;
+                gap: 4px;
+                box-shadow: var(--shadow-sm);
+            }
+            .navbar.open .nav-links a { display: block; padding: 10px 0; }
+            .navbar.open .navbar-actions {
+                display: flex;
+                position: absolute;
+                top: calc(100% + 190px);
+                left: 8%;
+                right: 8%;
+                padding: 10px 0 16px;
+                background: var(--surface-white);
+                box-shadow: var(--shadow-sm);
+                justify-content: center;
+            }
+            .navbar.open .navbar-actions .btn { flex: 1; min-width: 0; padding: 10px 8px; font-size: 0.75rem; }
+            .platform-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 1180px) and (min-width: 901px) {
+            .navbar { gap: 12px; padding-left: 3%; padding-right: 3%; }
+            .nav-links { gap: 10px; }
+            .nav-links a { font-size: 0.76rem; }
+            .navbar-actions .btn { padding-left: 10px; padding-right: 10px; font-size: 0.72rem; }
+        }
+
+        @media (max-width: 650px) {
+            .platform-grid { grid-template-columns: 1fr; }
+            .platform-card-wide, .platform-card-full { grid-column: auto; }
+            .account-bar, .card-heading, .parcel-line, .alert-line { align-items: flex-start; flex-direction: column; }
+            .account-actions { justify-content: flex-start; }
+            .parcel-values { flex-wrap: wrap; }
+            .agri-chatbot { grid-template-columns: 1fr; padding: 16px; }
+            .agri-chatbot-intro { padding: 4px; }
+            .chat-message { max-width: 94%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-icon"><img src="WhatsApp Image 2026-09-04 at 11.30.32 AM.jpeg" alt="Logo AGRISOON"></span>
+            <span>AGRISOON</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#accueil" class="active">Accueil</a></li>
+            <li><a href="#plateforme">À Propos</a></li>
+            <li><a href="#cultures">Solutions Multi-Cultures</a></li>
+            <li><a href="#parcelles">AgriConseil IA</a></li>
+            <li><a href="#alertes">Alertes</a></li>
+            <li><a href="#marketplace">Marketplace</a></li>
+        </ul>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+        <div class="navbar-actions">
+            <button class="btn btn-primary" id="login-button">
+                Espace Agriculteur <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button class="btn btn-primary" id="buyer-login">
+                Espace Acheteur <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero" id="accueil">
+        <div class="hero-text">
+            <div class="badge-tag">
+                <i class="fa-solid fa-leaf"></i> Agriculture Intelligente pour Toutes les Cultures
+            </div>
+            <h1>Optimisez vos Récoltes. <span>Cultivez le Futur.</span></h1>
+            <p>AGRISOON met la technologie IoT, le suivi microclimatique et les données au service de tous les producteurs agricoles togolais pour maximiser les rendements et faciliter la commercialisation.</p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" id="hero-login">Commencer Maintenant <i class="fa-solid fa-arrow-right"></i></button>
+                <button class="btn btn-secondary" onclick="document.getElementById('plateforme').scrollIntoView({behavior: 'smooth'})"><i class="fa-solid fa-play"></i> Découvrir les Solutions</button>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=1000" alt="Agriculteur dans un champ intelligent">
+            
+            <div class="glass-card card-soil">
+                <i class="fa-solid fa-droplet" style="color: #2d6a4f; font-size: 1.5rem;"></i>
+                <div>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Humidité du Sol</p>
+                    <p style="font-weight: 700; color: var(--primary-green); " id="val-recom2">Optimale (0%)</p>
+                </div>
+            </div>
+
+            <div class="glass-card card-score">
+                <span class="percentage">82%</span>
+                <span class="label">Score de Santé</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="marketplace-section" id="marketplace">
+        <div class="platform-heading"><div class="badge-tag">Marché AGRISOON</div><h2>Vendez et achetez directement</h2><p>Les agriculteurs publient leurs récoltes et les acheteurs commandent depuis un espace simple et sécurisé.</p></div>
+        <div class="marketplace-grid">
+            <article class="platform-card">
+                <div class="card-heading"><h3>Espace acheteur</h3><span class="status-dot" id="buyer-status">Visiteur</span></div>
+                <div class="market-toolbar"><input id="product-search" type="search" placeholder="Rechercher un produit"><select id="product-filter"><option value="Tous">Toutes les cultures</option><option>Riz</option><option>Maïs</option><option>Soja</option><option>Tomate</option><option>Igname</option><option>Manioc</option><option>Sorgho</option></select></div>
+                <div class="product-grid" id="product-list"></div>
+            </article>
+            <article class="platform-card platform-card-full">
+                <div class="card-heading"><h3>Mon panier</h3><span class="muted" id="cart-status">0 article</span></div><div id="cart-list"></div><div class="cart-total"><span>Total</span><span id="cart-total">0 FCFA</span></div><button class="btn btn-primary" id="checkout-button">Valider la commande</button><p class="form-message" id="checkout-message"></p>
+                <div class="seller-products"><div class="card-heading"><h3>Mes commandes</h3><span class="muted">Historique acheteur</span></div><div class="data-list" id="buyer-orders"></div></div>
+            </article>
+        </div>
+    </section>
+
+    <section class="solutions" id="plateforme">
+        <div class="section-header">
+            <p>Ce Que Nous Offrons</p>
+            <h2>Solutions Intelligentes pour une Agriculture Moderne</h2>
+        </div>
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-wheat-awn"></i></div>
+                <h3>Gestion des Cultures</h3>
+                <p>Planifiez, surveillez et gérez l'ensemble de vos parcelles (riz, maïs, soja, sorgho) avec précision.</p>
+            </div>
+            <div class="solution-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-faucet-drip"></i></div>
+                <h3>Contrôle d'Irrigation</h3>
+                <p>Planification intelligente basée sur des capteurs IoT pour économiser l'eau et optimiser la croissance.</p>
+            </div>
+            <div class="solution-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-flask-vial"></i></div>
+                <h3>Analyse du Sol & Nutriments</h3>
+                <p>Mesurez les paramètres environnementaux en temps réel pour appliquer les bons nutriments au bon moment.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-banner">
+        <div class="stat-item">
+            <i class="fa-solid fa-users"></i>
+            <h3>10K+</h3>
+            <p>Agriculteurs Connectés</p>
+        </div>
+        <div class="stat-item">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <h3>50K+</h3>
+            <p>Hectares Suivis</p>
+        </div>
+        <div class="stat-item">
+            <i class="fa-solid fa-chart-pie-simple"></i>
+            <h3>+35%</h3>
+            <p>Rendement Moyen</p>
+        </div>
+        <div class="stat-item">
+            <i class="fa-solid fa-hand-holding-droplet"></i>
+            <h3>40%</h3>
+            <p>D'Eau Économisée</p>
+        </div>
+    </section>
+
+    <section class="dashboard-section" id="cultures">
+        <div class="dashboard-container">
+            <div class="dashboard-info">
+                <div class="badge-tag">Simple. Rapide. Connecté.</div>
+                <h2>Une technologie qui grandit avec vous</h2>
+                <p>AGRISOON est votre partenaire numérique agricole. Accédez aux données terrain en temps réel et aux recommandations personnalisées pour chaque type de culture.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check"></i> Suivi multi-parcelles en temps réel</li>
+                    <li><i class="fa-solid fa-check"></i> Recommandations intelligentes par type de culture</li>
+                    <li><i class="fa-solid fa-check"></i> Interface accessible sur mobile et ordinateur</li>
+                </ul>
+            </div>
+
+            <div class="ui-mockup">
+                <div class="mockup-header">
+                    <div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Tableau de bord</span>
+                        <h4 style="color: var(--primary-dark);">Aperçu de la Parcelle</h4>
+                    </div>
+                    <span style="font-size: 0.8rem; background: var(--light-green); color: var(--primary-green); padding: 4px 10px; border-radius: 10px; font-weight: 600;">Station IoT Active</span>
+                </div>
+
+                <div class="crop-selector">
+                    <button class="crop-btn active" onclick="switchCrop('riz', this)">Riz</button>
+                    <button class="crop-btn" onclick="switchCrop('mais', this)">Maïs</button>
+                    <button class="crop-btn" onclick="switchCrop('soja', this)">Soja</button>
+                    <button class="crop-btn" onclick="switchCrop('tomate', this)">Tomate</button>
+                    <button class="crop-btn" onclick="switchCrop('igname', this)">Igname</button>
+                    <button class="crop-btn" onclick="switchCrop('manioc', this)">Manioc</button>
+                    <button class="crop-btn" onclick="switchCrop('sorgho', this)">Sorgho</button>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h4>Humidité de l'air</h4>
+                        <div class="value" id="val-humidity">0 %</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Température Air</h4>
+                        <div class="value" id="val-temp">0°C</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Niveau d'Eau</h4>
+                        <div class="value" id="val-water">0</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>humidité du sol</h4>
+                        <div class="value" id="val-recom" style="font-size: 0.9rem; color: var(--primary-green); font-weight: 600;">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="platform-section" id="parcelles">
+        <div class="platform-heading">
+            <div class="badge-tag">Espace agriculteur</div>
+            <h2>Suivez vos parcelles au même endroit</h2>
+            <p>Consultez les mesures, repérez les risques et ajoutez vos nouvelles parcelles en quelques secondes.</p>
+        </div>
+        <div class="agri-chatbot" id="assistant-agricole">
+            <div class="agri-chatbot-intro">
+                <div class="badge-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Assistant agricole IA</div>
+                <h3>Une question sur votre parcelle ?</h3>
+                <p>AgriConseil analyse vos mesures et vous aide à décider quand irriguer, observer ou intervenir.</p>
+                <span class="chatbot-status" id="chatbot-status">Assistant disponible · mode démo</span>
+            </div>
+            <div class="chat-window">
+                <div class="chat-header"><strong><i class="fa-solid fa-seedling"></i> AgriConseil</strong><span>Conseils agronomiques</span></div>
+                <div class="chat-messages" id="chat-messages" aria-live="polite">
+                    <div class="chat-message bot"><small>AgriConseil</small>Bonjour ! Je peux vous aider à interpréter l'humidité de votre parcelle. Quelle est votre mesure actuelle ?</div>
+                    <div class="chat-message user"><small>Vous</small>Ma parcelle de maïs est à 42 % d'humidité.</div>
+                    <div class="chat-message bot"><small>AgriConseil</small>À 42 %, votre maïs commence à manquer d'eau. Vérifiez le sol à 10 cm de profondeur, puis prévoyez un arrosage modéré en fin de journée. Réévaluez l'humidité demain matin et évitez de détremper la parcelle.</div>
+                </div>
+                <div class="chat-suggestions"><button class="chat-suggestion" type="button" data-chat-prompt="Ma parcelle est à 65 % d'humidité, dois-je irriguer ?">Humidité à 65 %</button><button class="chat-suggestion" type="button" data-chat-prompt="Que faire si mon sol est trop sec ?">Sol trop sec</button><button class="chat-suggestion" type="button" data-chat-prompt="Comment éviter de trop arroser le maïs ?">Éviter le sur-arrosage</button></div>
+                <form class="chat-form" id="chat-form"><input id="chat-input" name="message" required autocomplete="off" placeholder="Écrivez votre question…" aria-label="Votre question à l'assistant agricole"><button class="btn btn-primary" type="submit" aria-label="Envoyer la question"><i class="fa-solid fa-paper-plane"></i></button></form>
+                <div class="chat-disclaimer">Les conseils sont indicatifs : confirmez toujours avec vos observations de terrain.</div>
+            </div>
+        </div>
+        <div class="account-bar">
+            <div><span class="account-name" id="account-name">Visiteur</span><br><span class="muted" id="account-status">Connectez-vous pour personnaliser votre espace</span></div>
+            <div class="account-actions"><button class="btn btn-secondary" id="sync-button">Synchroniser</button><button class="btn btn-secondary" id="admin-action" hidden>Administration</button><button class="btn btn-secondary" id="account-action">Se connecter</button></div>
+        </div>
+        <div class="platform-grid">
+            <article class="platform-card platform-card-full">
+                <div class="card-heading"><h3>Espace vendeur</h3><span class="status-dot" id="seller-status">Connexion requise</span></div>
+                <form class="platform-form" id="product-form">
+                    <label>Nom du produit<input name="name" required placeholder="Ex. Riz étuvé premium"></label>
+                    <label>Catégorie<select name="category"><option>Riz</option><option>Maïs</option><option>Soja</option><option>Tomate</option><option>Igname</option><option>Manioc</option><option>Sorgho</option></select></label>
+                    <label>Quantité disponible (kg)<input name="quantity" type="number" min="1" required></label>
+                    <label>Prix total (FCFA)<input name="price" type="number" min="1" required></label>
+                    <label>Photo du produit<input name="image" type="file" accept="image/*" required></label>
+                    <button class="btn btn-primary" type="submit">Mettre en vente</button><p class="form-message" id="product-message"></p>
+                </form>
+                <div class="seller-products"><div class="card-heading"><h3>Mes produits en vente</h3><span class="muted" id="seller-product-count">0 produit</span></div><div class="data-list" id="seller-products"></div></div>
+                <div class="seller-products"><div class="card-heading"><h3>Commandes reçues</h3><span class="muted" id="seller-order-count">0 commande</span></div><div class="data-list" id="seller-orders"></div></div>
+            </article>
+            <article class="platform-card platform-card-wide">
+                <div class="card-heading"><h3>Mes parcelles</h3><button class="btn btn-primary" id="add-parcel">+ Ajouter</button></div>
+                <div class="data-list" id="parcel-list"></div>
+            </article>
+            <article class="platform-card" id="alertes">
+                <h3>Alertes prioritaires</h3>
+                <div class="data-list" id="alert-list"></div>
+            </article>
+            <article class="platform-card platform-card-full">
+                <div class="card-heading"><div><h3>Dernières mesures</h3><span class="muted" id="data-source">Mode démo · actualisation automatique</span></div><span class="status-dot">● Station IoT active</span></div>
+                <div class="data-list" id="measurement-list"></div>
+            </article>
+        </div>
+        <section class="admin-section" id="admin-section">
+            <div class="card-heading"><div><h3>Espace administrateur</h3><span class="muted">Gestion des comptes inscrits sur AGRISOON</span></div><span class="role-badge admin">Administrateur</span></div>
+            <div class="data-list" id="admin-summary"></div>
+            <div style="overflow-x:auto"><table class="admin-table"><thead><tr><th>Utilisateur</th><th>Email</th><th>Rôle</th><th>Inscription</th><th>Parcelles</th></tr></thead><tbody id="user-list"></tbody></table></div>
+        </section>
+    </section>
+
+    <div class="cta-banner">
+        <div>
+            <h3>Ensemble, construisons une agriculture plus verte et prospère.</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Rejoignez le réseau de coopératives et de producteurs AGRISOON dès aujourd'hui.</p>
+        </div>
+        <button class="btn btn-primary" id="cta-login">Rejoindre AGRISOON <i class="fa-solid fa-leaf"></i></button>
+    </div>
+
+    <div class="modal-backdrop" id="login-modal" aria-hidden="true">
+        <div class="platform-modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
+            <button class="modal-close" id="close-login" aria-label="Fermer">&times;</button>
+            <h2 id="login-title">Accéder à votre espace</h2>
+            <form class="platform-form" id="login-form">
+                <label>Nom de l'utilisateur<input name="name" required placeholder="Ex. Kossi Afi"></label>
+                <label>Email<input name="email" type="email" required placeholder="vous@exemple.com"></label>
+                <label>Mot de passe<input name="password" type="password" minlength="4" required placeholder="4 caractères minimum"></label>
+                <label>Profil<select name="role"><option value="agriculteur">Agriculteur / vendeur</option><option value="acheteur">Acheteur</option></select></label>
+                <div class="modal-actions"><button type="button" class="btn btn-secondary" id="cancel-login">Annuler</button><button class="btn btn-primary" id="login-submit" type="submit">Ouvrir mon espace</button></div>
+                <button type="button" class="btn btn-secondary" id="register-mode">Créer un compte acheteur</button>
+                <p class="form-message" id="login-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="parcel-modal" aria-hidden="true">
+        <div class="platform-modal" role="dialog" aria-modal="true" aria-labelledby="parcel-title">
+            <button class="modal-close" id="close-parcel" aria-label="Fermer">&times;</button>
+            <h2 id="parcel-title">Ajouter une parcelle</h2>
+            <form class="platform-form" id="parcel-form">
+                <label>Nom de la parcelle<input name="name" required placeholder="Ex. Parcelle Est"></label>
+                <label>Localisation<input name="location" required placeholder="Ex. Kovié"></label>
+                <label>Culture<select name="crop"><option>Riz</option><option>Maïs</option><option>Soja</option><option>Tomate</option><option>Igname</option><option>Manioc</option><option>Sorgho</option></select></label>
+                <label>Surface (hectares)<input name="area" type="number" min="0.1" step="0.1" required placeholder="2.5"></label>
+                <div class="modal-actions"><button type="button" class="btn btn-secondary" id="cancel-parcel">Annuler</button><button class="btn btn-primary" type="submit">Ajouter la parcelle</button></div>
+                <p class="form-message" id="parcel-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const defaultParcels = [
+            { id: 1, name: 'Parcelle Nord', location: 'Kovié', crop: 'Riz', area: 2.1, humidity: 65, temp: 28, water: 'Élevé', status: 'Optimal' },
+            { id: 2, name: 'Parcelle Est', location: 'Notsé', crop: 'Maïs', area: 2.6, humidity: 42, temp: 31, water: 'Modéré', status: 'À surveiller' },
+            { id: 3, name: 'Parcelle Sud', location: 'Mission-Tové', crop: 'Soja', area: 1.6, humidity: 55, temp: 29, water: 'Optimal', status: 'Optimal' }
+        ];
+        const cropData = {
+            riz: { humidity: '65 %', temp: '28 °C', water: 'Élevé (Casier)', recom: 'Irrigation optimale' },
+            mais: { humidity: '42 %', temp: '31 °C', water: 'Modéré', recom: 'Arrosage prévu à 17h' },
+            soja: { humidity: '55 %', temp: '29 °C', water: 'Optimal', recom: 'Apport en nutriments recommandé' },
+            tomate: { humidity: '58 %', temp: '27 °C', water: 'Modéré', recom: 'Surveillance des maladies foliaires' },
+            igname: { humidity: '62 %', temp: '26 °C', water: 'Modéré', recom: 'Préparer le buttage' },
+            manioc: { humidity: '48 %', temp: '30 °C', water: 'Faible', recom: "Contrôler l'humidité du sol" },
+            sorgho: { humidity: '40 %', temp: '32 °C', water: 'Faible', recom: 'Arrosage recommandé' }
+        };
+        const read = (key, fallback) => JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback));
+        const write = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+        const safe = value => String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
+        const API_BASE = localStorage.getItem('agrisoOnApi') || '';
+        const ADMIN_EMAIL = 'admin@agrisoOn.com'.toLowerCase();
+        const ADMIN_PASSWORD = 'admin123';
+        const defaultProducts = [
+            { id: 1, name: 'Riz étuvé premium', category: 'Riz', quantity: 3200, price: 410000, seller: 'Coopérative Kovié', ownerId: 'demo' },
+            { id: 2, name: 'Maïs grain local', category: 'Maïs', quantity: 1800, price: 235000, seller: 'Ferme de Notsé', ownerId: 'demo' },
+            { id: 3, name: 'Soja qualité supérieure', category: 'Soja', quantity: 950, price: 310000, seller: 'Groupement Zio', ownerId: 'demo' }
+        ];
+        let authMode = 'login';
+        let parcels = read('agrisoOnParcels', defaultParcels);
+        let users = read('agrisoOnUsers', []);
+        let products = read('agrisoOnProducts', defaultProducts);
+        let cart = read('agrisoOnCart', []);
+        let orders = read('agrisoOnOrders', []);
+        let notifications = read('agrisoOnNotifications', []);
+
+        function migrateData() {
+            users = users.map(user => ({ ...user, id: user.id || 'user-' + Date.now() + Math.random().toString(16).slice(2), role: user.role || 'agriculteur', createdAt: user.createdAt || new Date().toISOString() }));
+            const legacyUser = read('agrisoOnUser', null);
+            if (legacyUser && !users.some(user => user.email === legacyUser.email)) users.push({ id: 'user-legacy', name: legacyUser.name, email: legacyUser.email, role: 'agriculteur', createdAt: new Date().toISOString() });
+            const ownerId = users.find(user => user.email === (legacyUser && legacyUser.email))?.id || 'user-legacy';
+            parcels = parcels.map(parcel => ({ ...parcel, ownerId: parcel.ownerId || ownerId }));
+            const normalizedSession = legacyUser && users.find(user => user.email === legacyUser.email);
+            if (normalizedSession) write('agrisoOnUser', normalizedSession);
+            write('agrisoOnUsers', users); write('agrisoOnParcels', parcels);
+        }
+        migrateData();
+
+        async function apiRequest(path, options = {}) {
+            if (!API_BASE) return null;
+            const response = await fetch(API_BASE.replace(/\/$/, '') + path, { ...options, headers: { 'Content-Type': 'application/json', ...(options.headers || {}) } });
+            if (!response.ok) throw new Error('Réponse API ' + response.status);
+            return response.status === 204 ? null : response.json();
+        }
+
+        async function syncParcels() {
+            const source = document.getElementById('data-source');
+            source.textContent = API_BASE ? 'Synchronisation avec le serveur…' : 'Mode démo · actualisation automatique';
+            try {
+                const remoteParcels = await apiRequest('/api/parcels');
+                if (remoteParcels) { parcels = remoteParcels; write('agrisoOnParcels', parcels); source.textContent = 'Synchronisé avec le serveur'; }
+                else source.textContent = 'Mode démo · actualisation automatique';
+                renderPlatform();
+            } catch (error) {
+                source.textContent = 'Serveur indisponible · données locales';
+            }
+        }
+
+        function renderPlatform() {
+            const user = read('agrisoOnUser', null);
+            const currentUser = user ? users.find(item => item.id === user.id || item.email === user.email) : null;
+            const visibleParcels = currentUser && currentUser.role !== 'admin' ? parcels.filter(parcel => parcel.ownerId === currentUser.id) : [];
+            document.getElementById('account-name').textContent = user ? user.name : 'Visiteur';
+            document.getElementById('account-status').textContent = user ? user.email + (currentUser?.role === 'admin' ? ' · Administration' : currentUser?.role === 'acheteur' ? ' · Espace acheteur actif' : ' · Espace agriculteur actif') : 'Connectez-vous pour personnaliser votre espace';
+            document.getElementById('account-action').textContent = user ? 'Se déconnecter' : 'Se connecter';
+            document.getElementById('admin-action').hidden = currentUser?.role !== 'admin';
+            document.getElementById('seller-status').textContent = currentUser?.role === 'agriculteur' ? 'Vendeur connecté' : 'Connexion agriculteur requise';
+            document.getElementById('buyer-status').textContent = currentUser?.role === 'acheteur' ? currentUser.name : 'Connexion acheteur requise';
+            const sellerProducts = currentUser?.role === 'agriculteur' ? products.filter(product => product.ownerId === currentUser.id) : [];
+            const sellerOrders = currentUser?.role === 'agriculteur' ? orders.filter(order => order.products.some(product => product.ownerId === currentUser.id)) : [];
+            const buyerOrders = currentUser?.role === 'acheteur' ? orders.filter(order => order.buyerId === currentUser.id) : [];
+            document.getElementById('seller-product-count').textContent = sellerProducts.length + (sellerProducts.length > 1 ? ' produits' : ' produit');
+            document.getElementById('seller-products').innerHTML = sellerProducts.length ? sellerProducts.map(product => `<div class="seller-product-row">${product.image ? `<img class="product-image" src="${product.image}" alt="${safe(product.name)}">` : ''}<strong>${safe(product.name)}</strong><br><span class="muted">${safe(product.category)} · ${product.quantity.toLocaleString('fr-FR')} kg · ${product.price.toLocaleString('fr-FR')} FCFA</span><div class="seller-product-actions"><button class="btn btn-secondary" data-remove-product="${product.id}">Retirer</button></div></div>`).join('') : '<p class="empty-state">Aucun produit publié.</p>';
+            document.querySelectorAll('[data-remove-product]').forEach(button => button.onclick = async () => { const productId = Number(button.dataset.removeProduct); products = products.filter(product => product.id !== productId); write('agrisoOnProducts', products); try { await apiRequest('/api/products/' + productId, { method: 'DELETE' }); } catch (error) { /* Le mode démo conserve la suppression localement. */ } renderPlatform(); });
+            document.getElementById('seller-order-count').textContent = sellerOrders.length + (sellerOrders.length > 1 ? ' commandes' : ' commande');
+            document.getElementById('seller-orders').innerHTML = sellerOrders.length ? sellerOrders.map(order => `<div class="order-card"><strong>Commande #${order.id}</strong><br><span class="muted">${order.products.filter(product => product.ownerId === currentUser.id).map(product => safe(product.name)).join(', ')}</span><br><span class="order-status">Nouvelle commande · ${order.total.toLocaleString('fr-FR')} FCFA</span></div>`).join('') : '<p class="empty-state">Aucune commande reçue.</p>';
+            document.getElementById('buyer-orders').innerHTML = buyerOrders.length ? buyerOrders.map(order => `<div class="order-card"><strong>Commande #${order.id}</strong><br><span class="muted">${order.products.map(product => safe(product.name)).join(', ')}</span><br><span class="order-status">Commande enregistrée · ${order.total.toLocaleString('fr-FR')} FCFA</span></div>`).join('') : '<p class="empty-state">Aucune commande passée.</p>';
+            document.getElementById('parcel-list').innerHTML = visibleParcels.length ? visibleParcels.map(parcel => `<div class="parcel-line"><div><strong>${safe(parcel.name)}</strong><br><span class="muted">${safe(parcel.crop)} · ${safe(parcel.location)} · ${parcel.area} ha</span></div><div class="parcel-values"><span>${parcel.humidity} % sol</span><span>${parcel.temp} °C</span><span>${safe(parcel.status)}</span></div></div>`).join('') : '<p class="empty-state">Connectez-vous pour voir vos parcelles personnelles.</p>';
+            const alerts = visibleParcels.filter(parcel => parcel.humidity < 50 || parcel.status !== 'Optimal');
+            document.getElementById('alert-list').innerHTML = alerts.length ? alerts.map(parcel => `<div class="alert-line warning"><span class="alert-icon">⚠</span><div><strong>${safe(parcel.name)}</strong><br><span class="muted">Humidité du sol à ${parcel.humidity} %. Vérifiez l'irrigation.</span></div></div>`).join('') : '<div class="alert-line good"><span>✓</span><div><strong>Tout va bien</strong><br><span class="muted">Aucune alerte prioritaire.</span></div></div>';
+            document.getElementById('measurement-list').innerHTML = visibleParcels.slice(0, 4).map(parcel => `<div class="parcel-line"><div><strong>${safe(parcel.name)}</strong><br><span class="muted">Dernière mesure · aujourd'hui</span></div><div class="parcel-values"><span>Sol ${parcel.humidity} %</span><span>Air ${parcel.temp} °C</span><span>${safe(parcel.water)}</span></div></div>`).join('') || '<p class="empty-state">Aucune mesure disponible.</p>';
+            renderAdmin(currentUser);
+            renderMarketplace(currentUser);
+        }
+
+        function renderMarketplace(user) {
+            if (!document.getElementById('product-list')) return;
+            const search = document.getElementById('product-search').value.toLowerCase();
+            const category = document.getElementById('product-filter').value;
+            const visibleProducts = products.filter(product => product.name.toLowerCase().includes(search) && (category === 'Tous' || product.category === category));
+            document.getElementById('product-list').innerHTML = visibleProducts.length ? visibleProducts.map(product => `<div class="product-card">${product.image ? `<img class="product-image" src="${product.image}" alt="${safe(product.name)}">` : ''}<h4>${safe(product.name)}</h4><span class="product-price">${product.price.toLocaleString('fr-FR')} FCFA</span><div class="product-meta"><span>${safe(product.category)} · ${product.quantity.toLocaleString('fr-FR')} kg</span><span>${safe(product.seller)}</span></div><button class="btn btn-primary" data-product="${product.id}" ${user?.role !== 'acheteur' ? 'disabled' : ''}>Ajouter au panier</button></div>`).join('') : '<p class="empty-state">Aucun produit trouvé.</p>';
+            document.querySelectorAll('[data-product]').forEach(button => button.onclick = () => { const product = products.find(item => item.id === Number(button.dataset.product)); if (!product) return; cart.push(product); write('agrisoOnCart', cart); renderCart(); });
+            renderCart();
+        }
+
+        function renderCart() {
+            const total = cart.reduce((sum, product) => sum + product.price, 0);
+            document.getElementById('cart-list').innerHTML = cart.length ? cart.map((product, index) => `<div class="cart-row"><div class="card-heading"><span>${safe(product.name)}</span><button class="btn btn-secondary" data-remove-cart="${index}">Retirer</button></div><span class="muted">${product.price.toLocaleString('fr-FR')} FCFA</span></div>`).join('') : '<p class="empty-state">Votre panier est vide.</p>';
+            document.getElementById('cart-total').textContent = total.toLocaleString('fr-FR') + ' FCFA';
+            document.getElementById('cart-status').textContent = cart.length + (cart.length > 1 ? ' articles' : ' article');
+            document.querySelectorAll('[data-remove-cart]').forEach(button => button.onclick = () => { cart.splice(Number(button.dataset.removeCart), 1); write('agrisoOnCart', cart); renderCart(); });
+        }
+
+        function renderAdmin(user) {
+            const panel = document.getElementById('admin-section');
+            panel.classList.toggle('open', user?.role === 'admin');
+            if (user?.role !== 'admin') return;
+            document.getElementById('admin-summary').innerHTML = `<div class="alert-line good"><span>✓</span><div><strong>${users.length} compte(s) inscrit(s)</strong><br><span class="muted">${users.filter(item => item.role === 'agriculteur').length} agriculteur(s) · ${parcels.length} parcelle(s) enregistrée(s)</span></div></div>`;
+            document.getElementById('user-list').innerHTML = users.map(item => `<tr><td>${safe(item.name)}</td><td>${safe(item.email)}</td><td><span class="role-badge ${item.role === 'admin' ? 'admin' : ''}">${item.role === 'admin' ? 'Administrateur' : 'Agriculteur'}</span></td><td>${new Date(item.createdAt).toLocaleDateString('fr-FR')}</td><td>${parcels.filter(parcel => parcel.ownerId === item.id).length}</td></tr>`).join('');
+        }
+
+        function toggleModal(id, open) { const modal = document.getElementById(id); modal.classList.toggle('open', open); modal.setAttribute('aria-hidden', String(!open)); }
+        function openLogin() { authMode = 'login'; document.querySelector('#login-form select[name=role]').value = 'agriculteur'; updateAuthMode(); toggleModal('login-modal', true); document.querySelector('#login-form input').focus(); }
+        function openBuyerLogin() { const user = read('agrisoOnUser', null); if (user?.role === 'acheteur') { document.getElementById('marketplace').scrollIntoView({ behavior: 'smooth' }); return; } authMode = 'login'; toggleModal('login-modal', true); document.querySelector('#login-form select[name=role]').value = 'acheteur'; updateAuthMode(); document.querySelector('#login-form input').focus(); }
+        function updateAuthMode() {
+            const role = document.querySelector('#login-form select[name=role]').value;
+            const roleLabel = role === 'acheteur' ? 'acheteur' : 'agriculteur';
+            document.getElementById('login-title').textContent = authMode === 'register' ? 'Créer un compte ' + roleLabel : 'Se connecter en tant que ' + roleLabel;
+            document.getElementById('login-submit').textContent = authMode === 'register' ? 'Créer mon compte' : 'Ouvrir mon espace';
+            document.getElementById('register-mode').textContent = authMode === 'register' ? 'J’ai déjà un compte' : 'Créer un compte ' + roleLabel;
+        }
+        function switchCrop(cropType, element) {
+            document.querySelectorAll('.crop-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            const data = cropData[cropType];
+            Object.entries({ 'val-humidity': data.humidity, 'val-temp': data.temp, 'val-water': data.water, 'val-recom': data.recom }).forEach(([id, value]) => document.getElementById(id).textContent = value);
+        }
+
+        function addChatMessage(role, message) {
+            const messages = document.getElementById('chat-messages');
+            const item = document.createElement('div');
+            item.className = 'chat-message ' + role;
+            item.innerHTML = `<small>${role === 'bot' ? 'AgriConseil' : 'Vous'}</small>${safe(message)}`;
+            messages.appendChild(item);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function demoAgronomicReply(message) {
+            const normalized = message.toLowerCase();
+            const humidity = normalized.match(/(\d{1,3})\s*%/);
+            if (humidity) {
+                const value = Number(humidity[1]);
+                if (value < 40) return `À ${value} %, le sol est très sec. Inspectez la terre à 10 cm et irriguez progressivement en fin de journée. Contrôlez à nouveau demain matin.`;
+                if (value < 50) return `À ${value} %, votre parcelle commence à manquer d'eau. Prévoyez un arrosage modéré, puis vérifiez la mesure demain matin pour éviter le stress hydrique.`;
+                if (value <= 70) return `À ${value} %, l'humidité est généralement favorable. N'irriguez pas immédiatement : observez la météo et contrôlez la parcelle dans 24 heures.`;
+                return `À ${value} %, le sol est très humide. Suspendez l'irrigation, vérifiez le drainage et surveillez les signes de stagnation ou de maladie.`;
+            }
+            if (/sec|sécheresse|arroser|irrig/.test(normalized)) return "Commencez par mesurer l'humidité à plusieurs endroits et à 10 cm de profondeur. Irriguez lentement au pied des plants, de préférence en fin de journée, puis contrôlez le drainage.";
+            if (/maladie|feuille|jaune/.test(normalized)) return "Inspectez les feuilles au matin et retirez les parties atteintes. Une humidité excessive favorise les maladies : espacez les arrosages et vérifiez l'aération.";
+            return "Je peux vous conseiller sur l'humidité, l'irrigation et l'observation de vos cultures. Donnez-moi la culture, la localisation et la mesure d'humidité en pourcentage.";
+        }
+
+        async function askAgriculturalAssistant(message) {
+            const status = document.getElementById('chatbot-status');
+            status.textContent = 'Assistant en réflexion…';
+            try {
+                const remoteReply = await apiRequest('/api/ai/chat', { method: 'POST', body: JSON.stringify({ message, context: { parcels, cropData } }) });
+                if (remoteReply?.reply) { status.textContent = 'Assistant connecté · IA serveur'; return remoteReply.reply; }
+            } catch (error) { /* Le mode démo reste disponible si le serveur IA n'est pas configuré. */ }
+            status.textContent = API_BASE ? 'Assistant disponible · mode secours' : 'Assistant disponible · mode démo';
+            return demoAgronomicReply(message);
+        }
+
+        document.getElementById('menu-toggle').onclick = () => document.querySelector('.navbar').classList.toggle('open');
+        ['login-button', 'hero-login', 'cta-login'].forEach(id => document.getElementById(id).onclick = openLogin);
+        document.getElementById('buyer-login').onclick = openBuyerLogin;
+        document.getElementById('account-action').onclick = () => read('agrisoOnUser', null) ? (localStorage.removeItem('agrisoOnUser'), renderPlatform()) : openLogin();
+        document.getElementById('sync-button').onclick = syncParcels;
+        document.getElementById('admin-action').onclick = () => document.getElementById('admin-section').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('chat-form').onsubmit = async event => { event.preventDefault(); const input = document.getElementById('chat-input'); const message = input.value.trim(); if (!message) return; addChatMessage('user', message); input.value = ''; const button = event.currentTarget.querySelector('button'); button.disabled = true; addChatMessage('bot', 'Je consulte vos données de parcelle…'); const reply = await askAgriculturalAssistant(message); const pending = document.querySelectorAll('#chat-messages .chat-message.bot'); pending[pending.length - 1].innerHTML = `<small>AgriConseil</small>${safe(reply)}`; button.disabled = false; input.focus(); };
+        document.querySelectorAll('[data-chat-prompt]').forEach(button => button.onclick = () => { const input = document.getElementById('chat-input'); input.value = button.dataset.chatPrompt; input.focus(); });
+        document.getElementById('close-login').onclick = () => toggleModal('login-modal', false);
+        document.getElementById('cancel-login').onclick = () => toggleModal('login-modal', false);
+        document.getElementById('login-modal').onclick = event => { if (event.target.id === 'login-modal') toggleModal('login-modal', false); };
+        document.getElementById('register-mode').onclick = () => { authMode = authMode === 'register' ? 'login' : 'register'; updateAuthMode(); };
+        document.querySelector('#login-form select[name=role]').onchange = updateAuthMode;
+        document.getElementById('login-form').onsubmit = async event => { event.preventDefault(); const data = new FormData(event.currentTarget); const credentials = { name: data.get('name').trim(), email: data.get('email').trim().toLowerCase(), password: data.get('password'), role: data.get('role') }; let loggedUser; if (authMode === 'register') { if (users.some(user => user.email === credentials.email)) { document.getElementById('login-message').textContent = 'Cet email est déjà utilisé.'; return; } loggedUser = { id: 'user-' + Date.now(), name: credentials.name, email: credentials.email, role: credentials.role, createdAt: new Date().toISOString() }; users.push(loggedUser); write('agrisoOnUsers', users); write('agrisoOnUser', loggedUser); } else if (credentials.email === ADMIN_EMAIL && credentials.password === ADMIN_PASSWORD) { loggedUser = { id: 'admin-1', name: 'Administrateur AGRISOON', email: ADMIN_EMAIL, role: 'admin', createdAt: '2026-01-01T00:00:00.000Z' }; if (!users.some(user => user.id === loggedUser.id)) { users.push(loggedUser); write('agrisoOnUsers', users); } write('agrisoOnUser', loggedUser); } else { const existingUser = users.find(user => user.email === credentials.email && user.role === credentials.role); if (!existingUser) { document.getElementById('login-message').textContent = 'Compte introuvable ou profil incorrect. Créez un compte ou vérifiez votre profil.'; return; } try { const remoteUser = await apiRequest('/api/auth/login', { method: 'POST', body: JSON.stringify(credentials) }); loggedUser = remoteUser || existingUser; write('agrisoOnUser', loggedUser); } catch (error) { loggedUser = existingUser; write('agrisoOnUser', loggedUser); } } event.currentTarget.reset(); document.getElementById('login-message').textContent = ''; toggleModal('login-modal', false); authMode = 'login'; updateAuthMode(); renderPlatform(); document.getElementById(loggedUser.role === 'acheteur' ? 'marketplace' : 'parcelles').scrollIntoView({ behavior: 'smooth' }); };
+        document.getElementById('add-parcel').onclick = () => { if (!read('agrisoOnUser', null) || read('agrisoOnUser', null).role === 'admin') { openLogin(); return; } toggleModal('parcel-modal', true); document.querySelector('#parcel-form input').focus(); };
+        document.getElementById('close-parcel').onclick = () => toggleModal('parcel-modal', false);
+        document.getElementById('cancel-parcel').onclick = () => toggleModal('parcel-modal', false);
+        document.getElementById('parcel-modal').onclick = event => { if (event.target.id === 'parcel-modal') toggleModal('parcel-modal', false); };
+        document.getElementById('parcel-form').onsubmit = async event => { event.preventDefault(); const data = new FormData(event.currentTarget); const user = read('agrisoOnUser', null); const parcel = { id: Date.now(), ownerId: user.id, name: data.get('name'), location: data.get('location'), crop: data.get('crop'), area: Number(data.get('area')), humidity: 60, temp: 28, water: 'Modéré', status: 'Nouveau' }; try { const savedParcel = await apiRequest('/api/parcels', { method: 'POST', body: JSON.stringify(parcel) }); parcels.push(savedParcel || parcel); } catch (error) { parcels.push(parcel); } write('agrisoOnParcels', parcels); event.currentTarget.reset(); toggleModal('parcel-modal', false); renderPlatform(); };
+        const productForm = document.getElementById('product-form');
+        if (productForm) productForm.onsubmit = async event => { event.preventDefault(); const user = read('agrisoOnUser', null); const message = document.getElementById('product-message'); if (!user || user.role !== 'agriculteur') { message.textContent = 'Connectez-vous comme agriculteur pour publier un produit.'; return; } const data = new FormData(event.currentTarget); const imageFile = data.get('image'); if (!imageFile || !imageFile.type.startsWith('image/')) { message.textContent = 'Sélectionnez une image valide.'; return; } const image = await new Promise(resolve => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.readAsDataURL(imageFile); }); const product = { id: Date.now(), ownerId: user.id, name: data.get('name').trim(), category: data.get('category'), quantity: Number(data.get('quantity')), price: Number(data.get('price')), seller: user.name, image }; try { const savedProduct = await apiRequest('/api/products', { method: 'POST', body: JSON.stringify(product) }); products.push(savedProduct || product); } catch (error) { products.push(product); } write('agrisoOnProducts', products); event.currentTarget.reset(); message.textContent = 'Produit publié avec son image sur la marketplace.'; renderMarketplace(user); renderPlatform(); };
+        const productSearch = document.getElementById('product-search');
+        if (productSearch) productSearch.oninput = () => renderMarketplace(read('agrisoOnUser', null));
+        const productFilter = document.getElementById('product-filter');
+        if (productFilter) productFilter.onchange = () => renderMarketplace(read('agrisoOnUser', null));
+        const checkoutButton = document.getElementById('checkout-button');
+        if (checkoutButton) checkoutButton.onclick = async () => { const user = read('agrisoOnUser', null); const message = document.getElementById('checkout-message'); if (!user || user.role !== 'acheteur') { message.textContent = 'Connectez-vous comme acheteur pour valider votre commande.'; openLogin(); return; } if (!cart.length) { message.textContent = 'Ajoutez au moins un produit à votre panier.'; return; } const order = { id: Date.now(), buyerId: user.id, products: cart, total: cart.reduce((sum, product) => sum + product.price, 0), createdAt: new Date().toISOString() }; orders.push(order); cart.forEach(product => notifications.push({ id: Date.now() + Math.random(), sellerId: product.ownerId, orderId: order.id, message: 'Votre produit a été commandé.', read: false })); write('agrisoOnOrders', orders); write('agrisoOnNotifications', notifications); try { await apiRequest('/api/orders', { method: 'POST', body: JSON.stringify(order) }); } catch (error) { /* Le mode démo conserve la commande localement. */ } cart = []; write('agrisoOnCart', cart); renderCart(); renderPlatform(); message.textContent = 'Commande enregistrée. Le vendeur a été informé.'; };
+        updateAuthMode();
+        renderPlatform();
+        syncParcels();
+        setInterval(() => { if (!API_BASE) { parcels = parcels.map(parcel => ({ ...parcel, humidity: Math.max(25, Math.min(80, parcel.humidity + Math.round((Math.random() - 0.5) * 4))) })); write('agrisoOnParcels', parcels); renderPlatform(); } }, 8000);
+    </script>
+    <script src="./js/client.js"></script>
+</body>
+</html>
+
 let waterLevel = 0; 
 let humiditySol = 0; 
 
